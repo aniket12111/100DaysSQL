@@ -54,7 +54,11 @@ so Ramesh is not in output.
 
  
 
+**Solution:**
  
+select customer_name, cast(count(return_date) as float)/cast(count(*) as float)*100 as return_percent from orders as ord left outer join returns as ret
+on ord.order_id = ret.order_id group by customer_name
+having return_percent > 50.0
 
  
 
