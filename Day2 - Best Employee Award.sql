@@ -31,6 +31,16 @@ in that month .
 
 In the Month of Jan 2023 Shilpa has done 3 projects and Rahul has done 1 project so she is the best employee for Jan 2023.
 
-**Solution**
+**Solution - 1**
+select employee_name, year_month, no_of_completed_projects from (
+ select *, rank() over(partition by year_month order by no_of_completed_projects desc) as rnk from (
+  select employee_name, count(1) as no_of_completed_projects , strftime("%Y%m", project_completion_date) as year_month from projects
+  where project_completion_date is not null
+  group by employee_name, strftime("%Y%m", project_completion_date)
+  order by year_month, no_of_completed_projects desc) as t
+ ) as x
+where x.rnk=1
+
+
 
 
