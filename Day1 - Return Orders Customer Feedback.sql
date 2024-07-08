@@ -15,6 +15,41 @@ they should not be included in the output. Write an SQL to find list of customer
 | customer_name	| varchar(20) |
 | sales	 | int |
 
+**Table: returns (primary key : order_id)**
+
+| column name |	datatype |
+| order_id	| int |
+| return_date | date |
+
+**Example Input**
+
+**orders**
+
+order_id	order_date	customer_name	sales
+1	2023-01-01	Alexa	1239
+2	2023-01-02	Alexa	1239
+3	2023-01-03	Alexa	1239
+4	2023-01-03	Alexa	1239
+5	2023-01-01	Ramesh	1239
+6	2023-01-02	Ramesh	1239
+7	2023-01-03	Ramesh	1239
+returns
+
+order_id	return_date
+1	2023-01-02
+2	2023-01-04
+3	2023-01-05
+7	2023-01-10
+ 
+
+**Expected Output:**
+
+| customer_name |	Return_Percent |
+| Alexa |	75.0 |
+ 
+**Explanation: **
+Alexa has placed 4 orders and returned 3 of them which is 75 percent (3/4) so Alexa is in output while Ramesh has placed 3 orders but reurned only 1 order which is 33.33% (1/3), 
+so Ramesh is not in output.
 
 
  
