@@ -24,11 +24,12 @@ with cte as (
 cte1 as (
     select *, sum(cnt)over(partition by job_satisfaction) as number_of_respondents
     , rank()over(partition by job_satisfaction order by cnt desc)as rnk
+    --,max(cnt)over(partition by job_satisfaction) as max_cnt
     from cte
 )
 
 select job_satisfaction, country, number_of_respondents from cte1
-where rnk=1
+where rnk=1 --or cnt=max_cnt
 
 **Note: If we do not use order by inside windows function then it will not return running data.
 "sum(cnt)over(partition by job_satisfaction) as number_of_respondents" try this with order by clause.
